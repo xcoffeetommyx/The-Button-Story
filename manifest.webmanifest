@@ -1,0 +1,12 @@
+{
+  "name": "The Button Story",
+  "short_name": "The Button",
+  "description": "A standalone text-only novella edition of The Button.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#070607",
+  "theme_color": "#070607",
+  "orientation": "portrait",
+  "categories": ["books", "entertainment"]
+}
