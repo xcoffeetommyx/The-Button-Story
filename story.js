@@ -9,93 +9,205 @@ window.BUTTON_STORY = {
     {
       id: "ch01_01",
       chapter: 1,
-      title: "June in the backyard",
-      text: `June was twelve years old, which was old enough to know when adults had forgotten something and young enough to hope they still might remember.
+      title: "Fed and watered",
+      text: `June was twelve years old, and nobody in the house would have called her neglected.
 
-She stood in the backyard with a stick sword in one hand.
+There was cereal in the cabinet.
 
-Her mother had said, "In a minute."
+There were clean socks in her drawer.
 
-That was almost an hour ago.`
+Her dentist appointments happened. Her school forms came back signed. When she grew out of shoes, someone noticed before her toes complained too loudly.
+
+She was fed.
+
+She was watered.
+
+She was alive.
+
+Most days, that seemed to be the part her parents remembered.`
     },
     {
       id: "ch01_02",
       chapter: 1,
-      title: "The house ignores her",
-      text: `Inside, the television laughed.
+      title: "The list of things",
+      text: `Her mother was good at lists.
 
-A fork touched a plate.
+Lunch money. Library book. Vitamins. Permission slip. Hair brushed. Teeth brushed. Lights out.
 
-Her father said something June could not hear, and her mother answered in the tired voice she used when the day had already spent her.
+Her father was good at checking.
 
-Nobody sounded angry.
+Door locked. Stove off. Homework done. Jacket zipped. Shoes tied.
 
-That almost made it worse.`
+June was a thing they kept safe between other things.
+
+She knew they loved her.
+
+She also knew love could pass over you without stopping.`
     },
     {
       id: "ch01_03",
       chapter: 1,
-      title: "Mother almost notices",
-      text: `Her mother paused near the sink.
+      title: "The game",
+      text: `That evening, June built a kingdom in the backyard.
 
-For one soft second, she looked toward the back door.
+It had a crooked border scratched into the grass with a stick sword. It had a palace made from two lawn chairs and a towel. It had a dragon, but the dragon was invisible because June was waiting for someone else to be it.
 
-June lifted her hand, ready to wave.
+"Mom?"
 
-Then the porch light blinked.
+Her mother stood at the sink with both hands in dishwater.
 
-Once.
+"In a minute."
 
-Twice.
+June held the sword against her shoulder like knights did in movies.
 
-And went out.`
+She had already decided her mother could be the dragon or the queen.
+
+Whichever one wanted her more.`
     },
     {
       id: "ch01_04",
       chapter: 1,
-      title: "Crooked kingdom",
-      text: `June lowered her hand.
+      title: "After this",
+      text: `"Dad?"
 
-It was fine.
+Her father did not look away from the television.
 
-People forgot small things. Cups. Keys. Promises made to children while looking at phones.
+"After this."
 
-She dragged the stick through the grass and drew a crooked kingdom around her shoes.
+On the screen, people laughed at something June could not see. The laugh track spilled through the open window and landed in the grass beside her.
 
-In her kingdom, nobody forgot the queen.`
+June waited through one commercial.
+
+Then another.
+
+Then a man began explaining why a truck was brave.
+
+Her father had said after this.
+
+This kept becoming something else.`
     },
     {
       id: "ch01_05",
+      chapter: 1,
+      title: "Not bad",
+      text: `June was not a bad child.
+
+She did not slam doors. She did not break plates. She did not scream so hard the neighbors heard.
+
+When adults said, "Be good," June understood they usually meant, "Need less."
+
+So she needed less.
+
+She made her own games. She answered her own questions. She swallowed stories when nobody had time to hear the end of them.
+
+By twelve, she had become very talented at being fine.`
+    },
+    {
+      id: "ch01_06",
+      chapter: 1,
+      title: "The almost look",
+      text: `Her mother turned off the faucet.
+
+For one small second, the house went quiet enough to hear the yard.
+
+June straightened.
+
+Her mother looked toward the window.
+
+Not fully.
+
+Just enough that June lifted one hand before she could stop herself.
+
+Then the oven timer cried out.
+
+Her mother turned away.
+
+June lowered her hand before anyone had to decide whether they had seen it.`
+    },
+    {
+      id: "ch01_07",
+      chapter: 1,
+      title: "The quiet test",
+      text: `June stood very still.
+
+Sometimes she tested the house.
+
+If she stopped talking, would anyone ask what happened?
+
+If she put down her fork, would anyone notice she had not eaten?
+
+If she disappeared from a room, would anyone come looking before bedtime?
+
+The house usually failed gently.
+
+Not with cruelty.
+
+With dishes.
+
+With emails.
+
+With another episode starting before the last one had finished leaving the room.`
+    },
+    {
+      id: "ch01_08",
       chapter: 1,
       title: "The tree line",
       text: `At the edge of the yard, the grass stopped growing properly.
 
 June was not allowed past the trees.
 
-Not because anyone had explained why.
+Nobody had explained why.
 
-Because rules were easier than attention.
+Rules were easier than attention. They could be given once and expected to work forever.
 
-She touched the first branch with the tip of her sword.`
+June touched the first branch with the tip of her sword.
+
+The branch touched back.
+
+Only a little.
+
+Only enough that she felt answered.`
     },
     {
-      id: "ch01_06",
+      id: "ch01_09",
       chapter: 1,
-      title: "Father calls",
-      text: `Behind her, the back door opened.
+      title: "Far enough",
+      text: `June did not want to run away.
 
-"June?"
+Running away sounded angry.
 
-It was her father's voice.
+June was not angry yet.
 
-Not worried yet.
+She only wanted to go far enough that someone would have to come looking.
 
-Just checking the shape of the evening.
+Far enough for her father to stand from his chair.
 
-The wind moved through the trees, and the sound broke apart before it reached her.`
+Far enough for her mother to dry her hands on the front of her shirt and say June's name like it mattered where the answer came from.
+
+Far enough to become missed.`
     },
     {
-      id: "ch01_07",
+      id: "ch01_10",
+      chapter: 1,
+      title: "The porch light",
+      text: `The porch light blinked.
+
+Once.
+
+Twice.
+
+The kingdom in the grass looked smaller without it.
+
+Inside, her mother said something June could not hear. Her father answered in the tired voice he used when he wanted to be kind but not interrupted.
+
+Nobody sounded angry.
+
+That almost made it worse.
+
+Anger would have meant she had reached them.`
+    },
+    {
+      id: "ch01_11",
       chapter: 1,
       title: "The path appears",
       text: `The woods opened.
@@ -106,21 +218,57 @@ Not like magic in stories where trumpets knew what to do.
 
 The trees simply leaned aside and made a path exactly wide enough for one lonely girl.
 
-June smiled before she knew she had decided.`
+June looked back at the kitchen window.
+
+Her mother moved behind the glass, blurred by steam and yellow light.
+
+June waited one more second.
+
+The window did not become a door.`
     },
     {
-      id: "ch01_08",
+      id: "ch01_12",
       chapter: 1,
-      title: "Entering the woods",
-      text: `The house called again.
+      title: "Almost called",
+      text: `Behind her, the back door opened.
 
-Or maybe it was only the screen door.
+Or maybe it was only the screen door shifting in the wind.
 
-June stepped between the trees.
+"June?"
 
-Behind her, the yard folded itself into something that looked almost the same.
+The voice was soft enough to be mistaken for habit.
 
-Almost was enough.`
+Not frightened.
+
+Not yet.
+
+June held her breath.
+
+If he called again, she would go back.
+
+The television laughed.
+
+The woods listened.`
+    },
+    {
+      id: "ch01_13",
+      chapter: 1,
+      title: "Between trees",
+      text: `June stepped between the trees.
+
+The air changed at once.
+
+It smelled like rain, old leaves, and something colder than evening.
+
+Behind her, the yard folded itself into a shape that still looked like home if she did not look too hard.
+
+She told herself she would only walk to the first bend.
+
+Then she would wait.
+
+Then they would come.
+
+Then everything would know what she was worth.`
     },
     {
       id: "ch02_01",
@@ -130,16 +278,16 @@ Almost was enough.`
 
 It looked remembered.
 
-It curved around roots before June could trip on them.
+It curved around roots before June could trip on them. It ducked under branches before they could scratch her face.
 
-It ducked under branches before they could scratch her face.
+For the first time that evening, the world adjusted itself to fit her.
 
-For the first time that evening, the world adjusted itself to fit her.`
+June smiled before she knew she had decided to keep going.`
     },
     {
       id: "ch02_02",
       chapter: 2,
-      title: "The listening trees",
+      title: "Listening trees",
       text: `The trees listened better than people.
 
 They did not interrupt.
@@ -148,28 +296,54 @@ They did not say, "Not now."
 
 They did not look past her toward brighter rooms.
 
-When June breathed, the leaves breathed after her.`
+When June breathed, the leaves breathed after her.
+
+When she stopped, the woods stopped too.
+
+It was a terrible thing, being answered for the first time.`
     },
     {
       id: "ch02_03",
       chapter: 2,
-      title: "First memory cost",
-      text: `Behind her, the house was still there.
+      title: "No footprints",
+      text: `Mud shone darkly in the path.
 
-Probably.
+June stepped around it at first, then through it when the roots left her no choice.
 
-June turned to check, but the branches had folded together like fingers.
+Her sneakers should have come away heavy.
 
-She tried to picture the kitchen window.
+They did not.
 
-She remembered the light.
+The mud kept no print of her.
 
-She could not remember who had been standing in it.`
+June looked behind herself.
+
+The path was smooth and wet and empty.
+
+She decided the woods were polite.`
     },
     {
       id: "ch02_04",
       chapter: 2,
-      title: "The found things",
+      title: "The first calling",
+      text: `A voice called behind her.
+
+It sounded like her father.
+
+It sounded like it had been calling for a long time.
+
+June turned so fast her paper towel palace, her lawn-chair throne, her crooked kingdom all seemed to turn with her.
+
+The trees stood close together.
+
+There was no yard.
+
+There was only the sound of someone saying her name from the wrong distance.`
+    },
+    {
+      id: "ch02_05",
+      chapter: 2,
+      title: "Found things",
       text: `The path offered her little treasures.
 
 A blue marble.
@@ -178,12 +352,14 @@ A ribbon with no hair to hold.
 
 A plastic star from a toy wand.
 
+A mitten stiff with old rain.
+
 Things children had dropped when someone called them home.
 
-Or when nobody did.`
+Or when nobody called soon enough.`
     },
     {
-      id: "ch02_05",
+      id: "ch02_06",
       chapter: 2,
       title: "The paper crown",
       text: `The crown hung from a branch too low for adults.
@@ -194,37 +370,27 @@ Across the front, someone had written two words in red crayon.
 
 GOOD GIRL.
 
-June laughed once, because she hated how badly she wanted it.`
-    },
-    {
-      id: "ch02_06",
-      chapter: 2,
-      title: "The woods bow",
-      text: `The crown fit.
+June laughed once, because she hated how badly she wanted it.
 
-The woods bowed.
-
-Not deeply.
-
-Just enough to make her chest hurt.
-
-June had never been obeyed before.
-
-She stood very still, afraid that moving would prove it was pretend.`
+The crown fit as if it had been measured while she slept.`
     },
     {
       id: "ch02_07",
       chapter: 2,
-      title: "Home gets quieter",
-      text: `Somewhere behind her, a door opened.
+      title: "Cold hands",
+      text: `The air grew colder.
 
-A voice called her name.
+June tucked her hands into the sleeves of her hoodie.
 
-This time, June heard it.
+She could see her breath, but she could not feel the chill the way she should have.
 
-This time, the woods heard it too.
+Cold touched the leaves.
 
-Every leaf turned silver-side up, and the voice became the sound of rain.`
+Cold touched the stones.
+
+Cold silvered the puddles along the path.
+
+It passed through June like it had somewhere else to be.`
     },
     {
       id: "ch02_08",
@@ -238,23 +404,29 @@ Its wings opened and closed like two tiny doors.
 
 June did not know moths could lie.
 
-So she believed it.`
+She also did not know they could tell the truth in pieces.
+
+So she followed it.`
     },
     {
       id: "ch02_09",
       chapter: 2,
-      title: "The lights ahead",
-      text: `The moth lifted into the dark.
+      title: "The search lights",
+      text: `Lights blinked between the trees.
 
-Ahead, between the trees, warm windows blinked awake one by one.
+June thought of flashlights first.
 
-Not porch lights.
+Her father's old black one. Her mother's phone held high in one shaking hand. Neighbors stepping carefully through weeds, calling, listening, calling again.
 
-Not warning lights.
+But the lights ahead were too warm.
+
+Too still.
+
+Windows, not flashlights.
 
 Welcome lights.
 
-June followed them because welcome was a shape she still recognized.`
+The moth flew toward them, and June followed because welcome was a shape she still recognized.`
     },
     {
       id: "ch03_01",
@@ -270,7 +442,11 @@ Its streets were swept clean of leaves, mud, and anything that had not been invi
 
 A wooden sign leaned near the first little house.
 
-ALMOST.`
+ALMOST.
+
+June read the word twice.
+
+It felt less like a name than an excuse.`
     },
     {
       id: "ch03_02",
@@ -288,23 +464,29 @@ At every table, one chair sat empty.
 
 Not forgotten.
 
-Saved.`
+Saved.
+
+June stood in the street with her paper crown softening on her head and wondered how a chair could look more wanted than a person.`
     },
     {
       id: "ch03_03",
       chapter: 3,
-      title: "The houses notice her",
-      text: `June walked down the center of the street.
+      title: "Children in windows",
+      text: `Children watched her from behind the glass.
 
-Nobody shouted.
+Some were younger than June.
 
-Nobody asked where she had been.
+Some were older.
 
-Nobody said she was too old to play pretend.
+One wore a summer dress though frost silvered the porch rail.
 
-Curtains moved as she passed.
+One held a birthday balloon that had gone dull and wrinkled.
 
-Inside each house, someone looked up.`
+One little boy pressed both hands to the window, but the glass did not fog.
+
+They smiled at June as if they knew her.
+
+As if everyone arrived here by being almost found.`
     },
     {
       id: "ch03_04",
@@ -322,7 +504,11 @@ Their faces, but open.
 
 June pressed her hand to the glass.
 
-On the other side, no one looked tired of being needed.`
+On the other side, no one looked tired of being needed.
+
+No one looked through her.
+
+That was how June knew it was not home.`
     },
     {
       id: "ch03_05",
@@ -340,7 +526,13 @@ But she smiled at the right time.
 
 She asked for nothing twice.
 
-She looked easy to love.`
+She looked easy to love.
+
+When she turned toward the window, June saw a pale line of dirt beneath her fingernails.
+
+Yard dirt.
+
+Old dirt.`
     },
     {
       id: "ch03_06",
@@ -356,42 +548,52 @@ The White Moth whispered near June's ear.
 
 "There is room for you here."
 
-June wanted to ask why room always came with rules.`
+June wanted to ask why room always came after she had stopped asking for it.`
     },
     {
       id: "ch03_07",
       chapter: 3,
-      title: "The cost of entering",
-      text: `The door opened without being touched.
+      title: "Late voices",
+      text: `Somewhere beyond Almost, people were calling.
 
-Warmth spilled over June's shoes.
+Her name moved over the roofs like smoke.
 
-Somewhere behind her, very far away, someone called her name.
+June heard her mother this time.
 
-The town went quiet.
+Not the hallway-goodnight voice.
 
-June held her breath.
+Not the hurry-up-we're-late voice.
 
-The voice sounded frightened now.`
+This voice had broken open.
+
+Almost went quiet.
+
+Every curtain held still.
+
+The children in the windows stopped smiling.`
     },
     {
       id: "ch03_08",
       chapter: 3,
-      title: "The town explains itself",
-      text: `"If you go back," said the girl with June's face, "they will be sorry for one night."
+      title: "What Almost knows",
+      text: `"If you go back," said the girl with June's face, "they will hold you too hard."
 
 Her mother's almost-hand rested on the almost-girl's shoulder.
 
-"Then they will get tired again."
+"They will promise things."
 
 Her father smiled sadly.
 
-"Then you will have to need them again."`
+"They will mean them."
+
+The almost-girl looked at June as if this were the cruelest part.
+
+"For a while."`
     },
     {
       id: "ch03_09",
       chapter: 3,
-      title: "June believes it",
+      title: "Almost true",
       text: `June knew it was cruel.
 
 She also knew it might be true.
@@ -400,12 +602,18 @@ That was the unfair thing about fear.
 
 It did not need to lie completely.
 
-It only needed to sound like something that had happened before.`
+It only needed to sound like something that had happened before.
+
+Behind the houses, the calls grew thin.
+
+Not farther away.
+
+Older.`
     },
     {
       id: "ch03_10",
       chapter: 3,
-      title: "Toward the lake",
+      title: "The street ends",
       text: `The almost-girl stepped away from the window.
 
 The empty chair scraped softly across the floor.
@@ -416,7 +624,11 @@ But when the streetlights blinked out, she saw the path instead.
 
 It led through Almost.
 
-It led beyond it.`
+It led beyond it.
+
+All the children watched her pass.
+
+None of them opened a door.`
     },
     {
       id: "ch04_01",
@@ -428,7 +640,9 @@ The trees grew thin.
 
 The lights behind June blinked out one by one.
 
-She kept walking because stopping would mean deciding.
+The White Moth flew ahead without looking back.
+
+June kept walking because stopping would mean deciding.
 
 And deciding had always been easier for everyone else.`
     },
@@ -446,7 +660,9 @@ No trees.
 
 No girl in a paper crown.
 
-June stepped close and saw nothing looking back.`
+June stepped close and saw nothing looking back.
+
+Not even a shadow.`
     },
     {
       id: "ch04_03",
@@ -460,136 +676,158 @@ It accepted her hand the way a room accepts silence.
 
 The White Moth landed on her shoulder.
 
-"Some places do not ask you to be anyone," it said.`
+"Some places do not ask you to be anyone," it said.
+
+June looked at the place where her reflection should have been.
+
+"Some places do not let you," she said.`
     },
     {
       id: "ch04_04",
       chapter: 4,
-      title: "The voice from home",
-      text: `Then came her name.
+      title: "Morning under glass",
+      text: `The lake showed her morning.
 
-Real this time.
+Not a reflection.
 
-Torn by distance.
+A memory that had not belonged to her while it was happening.
 
-Thin with panic.
+Her backyard filled with people in coats.
 
-"June!"
+Her mother barefoot in wet grass.
 
-She hated how much she wanted to answer.
+Her father holding June's stick sword like it was a question nobody knew how to answer.
 
-She hated how late they sounded.`
+The porch light still on.
+
+The house finally awake.`
     },
     {
       id: "ch04_05",
       chapter: 4,
-      title: "The story notices",
-      text: `The page trembled.
+      title: "The room after",
+      text: `The lake showed her room.
 
-Not from the wind.
+Her bed made too neatly.
 
-Not from the woods.
+Her shoes lined up beneath it, except the pair she had worn into the woods.
 
-Something outside the story wanted the next line.
+A cereal bowl in the sink that nobody washed for three days.
 
-The lake waited.
+Her mother sitting on the floor with June's hoodie pressed against her mouth.
 
-The moth waited.
+Her father in the doorway, unable to enter and unable to leave.
 
-June waited too, because waiting was the shape her life had taught her.`
+June tried to call to them.
+
+The lake kept her voice.`
     },
     {
       id: "ch04_06",
       chapter: 4,
-      title: "The almost truth",
-      text: `The lake showed her almost-truths.
+      title: "What they say now",
+      text: `By then, everyone had learned different words for June.
 
-Her mother almost turning.
+Missing.
 
-Her father almost calling.
+Sweet.
 
-The house almost remembering.
+Quiet.
 
-The town almost loving her.
+Imaginative.
 
-June almost going home.
+Loved.
 
-It was a cruel word, almost.
+People brought casseroles to the house and said they could not imagine.
 
-It left enough room to blame herself.`
+Her parents nodded as if imagining was not the only thing they had left.
+
+June wanted to tell them she had not meant forever.
+
+She had only meant far enough.`
     },
     {
       id: "ch04_07",
       chapter: 4,
-      title: "The White Moth reveals itself",
-      text: `"You can stay where nobody forgets you," said the White Moth.
+      title: "The thing that stayed",
+      text: `"Am I dead?" June asked.
 
-June looked at the empty lake.
+The White Moth opened its wings.
 
-"There's nobody here."
+In their pale markings, June saw windows, doors, pages, years.
 
-"Exactly," said the moth.
+"You are remembered," it said.
 
-Its wings opened like a book that had already decided the ending.`
+June understood then that this was not an answer.
+
+It was a place to put an answer when no one wanted to say it aloud.`
     },
     {
       id: "ch04_08",
       chapter: 4,
-      title: "Final call",
-      text: `Her name came again.
+      title: "Mourning",
+      text: `The lake showed her parents on the anniversary.
 
-Closer.
+Her mother brought a paper crown to the tree line.
 
-Broken.
+Her father brought a flashlight, though the sun had not gone down.
 
-Loved, maybe.
+They stood where the grass stopped growing properly.
 
-Too late, maybe.
+They said June's name.
 
-June stood between the voice and the water.
+Not to call her home.
 
-For the first time all night, nothing moved her.
+Not anymore.
 
-Not the woods.
-
-Not the town.
-
-Not even fear.`
+To keep from letting the world close over the sound of it.`
     },
     {
       id: "ch04_09",
       chapter: 4,
-      title: "The final press",
-      text: `Then the button was pressed.
+      title: "The girl who kept walking",
+      text: `June stood beside the black lake in her soft paper crown.
 
-Not in June's world.
+Behind her, Almost waited with its warm windows and empty chairs.
 
-Not by June's hand.
+Ahead of her, the woods went on making room.
 
-But the story felt it.
+Somewhere, her parents mourned a girl who had only wanted to be missed.
 
-The lake opened without making a sound.
+Somewhere else, that girl kept walking.
 
-June closed her eyes because closing them was the only choice left that still belonged to her.`
+The White Moth lifted from her shoulder.
+
+June followed it because she had been following for a long time.
+
+Longer than she could remember.`
     }
   ],
   endings: {
     found: {
       id: "found",
       title: "Found",
-      text: `You did not press the button.
+      text: `The evening stayed where it was.
 
-So the story stayed where it was.
+The oven timer stopped crying.
+
+The television went quiet between episodes.
+
+For once, the silence in the yard sounded wrong to someone inside the house.
+
+June's mother looked out the window and saw the lawn chairs, the towel palace, the crooked kingdom in the grass.
+
+She did not see June.
+
+That was what frightened her.
 
 The back door opened.
 
-June's mother called her name once, then again, sharper the second time.
+June's father stepped onto the porch.
 
-June did not answer right away.
+This time, when he called her name, he listened for the answer.
 
-That was what frightened them.
-
-They found her near the tree line before the dark finished gathering.
+They found June near the tree line before the dark finished gathering.
 
 Nobody became perfect that night.
 
@@ -603,34 +841,38 @@ And when June said she did not want to be alone, someone heard her.`
     },
     main: {
       id: "main",
-      title: "The Story You Wanted",
-      text: `By morning, the yard was full of voices.
+      title: "What Remained",
+      text: `They kept her room for a while.
 
-Her mother said June's name until it stopped sounding like a name.
+Not as a shrine, they told people.
 
-Her father stood near the tree line with his hands open, as if he had dropped something too large to pick up.
+Just in case.
 
-Nobody mentioned the town.
+Her mother washed the hoodie eventually, then cried because it no longer smelled like June.
 
-Nobody mentioned the lake.
+Her father fixed the porch light and left it burning until dawn, night after night, long after there was no practical reason.
 
-Nobody mentioned the button.
+At dinner, they set three places by accident.
 
-The report would call it a tragedy.
+Then two on purpose.
 
-The neighbors would call it sudden.
+Years passed.
 
-The story knew better.
+The grass grew over the crooked kingdom.
 
-It had asked you to stop at the beginning.
+The lawn chairs rusted.
 
-It had asked you again at the end.
+The woods stayed where they were.
 
-You pressed anyway.
+Sometimes, when the house went quiet, June's mother would lift her head as if she had heard a girl in the yard.
 
-The story was finished.
+Sometimes, June almost answered.
 
-That was what you pressed for.`
+But Almost was a place.
+
+Almost was a promise.
+
+Almost was what remained.`
     }
   }
 };
