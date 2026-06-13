@@ -13,20 +13,12 @@ A standalone, text-only novella edition of **The Button** for mobile reading and
 
 The reader does not depend on React, Vite, the existing game runtime, or any root-relative paths.
 
-## Hidden Ending Timer
-
-The hidden `Found` ending wait is configured for production in one place near the top of `app.js`:
-
-```js
-const FOUND_ENDING_WAIT_SECONDS = 90;
-```
-
 ## GitHub Pages
 
-Deploy this folder as static files. It works from repository subpaths such as:
+Deploy this repository as static files. It works from a GitHub Pages URL such as:
 
 ```text
-https://username.github.io/repository-name/The-Button-Story/
+https://username.github.io/repository-name/
 ```
 
 All app references use `./` relative paths, including the manifest, service worker, scripts, and styles.
@@ -37,17 +29,3 @@ All app references use `./` relative paths, including the manifest, service work
 2. Tap Share.
 3. Tap Add to Home Screen.
 4. Launch from the home screen once online; after the first load, the service worker caches the reader for offline use.
-
-## Local Test
-
-From this repository root:
-
-```powershell
-python -m http.server 4173
-```
-
-Then open:
-
-```text
-http://localhost:4173/The-Button-Story/
-```
