@@ -499,7 +499,7 @@ function renderSettings() {
           <span>Reduced motion</span>
           <input type="checkbox" data-action="toggle-motion" ${state.settings.reduceMotion ? "checked" : ""} />
         </label>
-        <p class="content-note">Content note: childhood neglect, emotional crisis, disappearance, and implied death.</p>
+        <p class="content-note">Content note: childhood loneliness and emotional distress.</p>
         <button class="reset-button" type="button" data-action="reset">Reset Story</button>
       </section>
     </div>
