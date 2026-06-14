@@ -122,6 +122,27 @@ Then the oven timer cried out.
 
 Her mother turned away.
 
+June lowered her hand before anyone had to decide whether they had seen it.`,
+      replayText: `Her mother turned off the faucet.
+
+For one small second, the house went quiet enough to hear the yard.
+
+June straightened.
+
+Her mother looked toward the window.
+
+Not fully.
+
+Just enough that June lifted one hand before she could stop herself.
+
+Somewhere else, something had already been pressed.
+
+Not in the kitchen.
+
+Not in the yard.
+
+The oven timer cried out, and her mother turned away as if the sound had been waiting for permission.
+
 June lowered her hand before anyone had to decide whether they had seen it.`
     },
     {
@@ -248,6 +269,27 @@ If he called again, she would go back.
 
 The television laughed.
 
+The woods listened.`,
+      replayText: `Behind her, the back door opened.
+
+Or maybe it was only the screen door shifting in the wind.
+
+"June?"
+
+The voice was soft enough to be mistaken for habit.
+
+Not frightened.
+
+Not yet.
+
+June held her breath.
+
+If he called again, she would go back.
+
+The television laughed.
+
+The sound had the shape of a button clicking into place.
+
 The woods listened.`
     },
     {
@@ -319,6 +361,25 @@ The mud kept no print of her.
 June looked behind herself.
 
 The path was smooth and wet and empty.
+
+She decided the woods were polite.`,
+      replayText: `Mud shone darkly in the path.
+
+June stepped around it at first, then through it when the roots left her no choice.
+
+Her sneakers should have come away heavy.
+
+They did not.
+
+The mud kept no print of her.
+
+June looked behind herself.
+
+The path was smooth and wet and empty.
+
+Every step felt like a page turning.
+
+Every page left less of her behind.
 
 She decided the woods were polite.`
     },
@@ -426,7 +487,28 @@ Windows, not flashlights.
 
 Welcome lights.
 
-The moth flew toward them, and June followed because welcome was a shape she still recognized.`
+The moth flew toward them, and June followed because welcome was a shape she still recognized.`,
+      replayText: `Lights blinked between the trees.
+
+June thought of flashlights first.
+
+Her father's old black one. Her mother's phone held high in one shaking hand. Neighbors stepping carefully through weeds, calling, listening, calling again.
+
+But the lights ahead were too warm.
+
+Too still.
+
+Windows, not flashlights.
+
+Welcome lights.
+
+Behind the dark, something red waited without being named.
+
+It did not shine like a warning.
+
+It shone like a choice.
+
+The moth flew toward the windows, and June followed because welcome was a shape she still recognized.`
     },
     {
       id: "ch03_01",
@@ -486,7 +568,24 @@ One little boy pressed both hands to the window, but the glass did not fog.
 
 They smiled at June as if they knew her.
 
-As if everyone arrived here by being almost found.`
+As if everyone arrived here by being almost found.`,
+      replayText: `Children watched her from behind the glass.
+
+Some were younger than June.
+
+Some were older.
+
+One wore a summer dress though frost silvered the porch rail.
+
+One held a birthday balloon that had gone dull and wrinkled.
+
+One little boy pressed both hands to the window, but the glass did not fog.
+
+They smiled at June as if they knew her.
+
+As if everyone arrived here by being almost found.
+
+As if every arrival began somewhere else, with someone asking what happened next.`
     },
     {
       id: "ch03_04",
@@ -565,6 +664,27 @@ Not the hallway-goodnight voice.
 Not the hurry-up-we're-late voice.
 
 This voice had broken open.
+
+Almost went quiet.
+
+Every curtain held still.
+
+The children in the windows stopped smiling.`,
+      replayText: `Somewhere beyond Almost, people were calling.
+
+Her name moved over the roofs like smoke.
+
+June heard her mother this time.
+
+Not the hallway-goodnight voice.
+
+Not the hurry-up-we're-late voice.
+
+This voice had broken open.
+
+It had been calling since the first page.
+
+Maybe before the first page.
 
 Almost went quiet.
 
@@ -700,7 +820,28 @@ Her father holding June's stick sword like it was a question nobody knew how to 
 
 The porch light still on.
 
-The house finally awake.`
+The house finally awake.`,
+      replayText: `The lake showed her morning.
+
+Not a reflection.
+
+A memory that had not belonged to her while it was happening.
+
+Her backyard filled with people in coats.
+
+Her mother barefoot in wet grass.
+
+Her father holding June's stick sword like it was a question nobody knew how to answer.
+
+The porch light still on.
+
+The house finally awake.
+
+The first press was not beside the lake.
+
+It was not in the woods.
+
+It was before June stepped between the trees, when the evening still had time to stop.`
     },
     {
       id: "ch04_05",
@@ -780,7 +921,28 @@ Not to call her home.
 
 Not anymore.
 
-To keep from letting the world close over the sound of it.`
+To keep from letting the world close over the sound of it.`,
+      replayText: `The lake showed her parents on the anniversary.
+
+Her mother brought a paper crown to the tree line.
+
+Her father brought a flashlight, though the sun had not gone down.
+
+They stood where the grass stopped growing properly.
+
+They said June's name.
+
+Not to call her home.
+
+Not anymore.
+
+To keep from letting the world close over the sound of it.
+
+A button was not always red.
+
+Sometimes it was only a way to begin.
+
+Sometimes it was the thing that made everyone too late.`
     },
     {
       id: "ch04_09",

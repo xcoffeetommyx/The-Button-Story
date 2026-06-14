@@ -1,4 +1,4 @@
-const FOUND_ENDING_WAIT_SECONDS = 90;
+const FOUND_ENDING_WAIT_SECONDS = 60;
 
 const STORY = window.BUTTON_STORY;
 const STORAGE_KEY = "the-button-story:progress:v1";
@@ -148,6 +148,9 @@ function saveSettings() {
 }
 
 function resetStory() {
+  const hasReachedMainEnding = state.mainEndingReached;
+  const hasReachedFoundEnding = state.foundEndingReached;
+
   clearSavedProgress();
 
   state = {
@@ -156,8 +159,8 @@ function resetStory() {
     entryIndex: 0,
     buttonPressCount: 0,
     storyStarted: false,
-    mainEndingReached: false,
-    foundEndingReached: false,
+    mainEndingReached: hasReachedMainEnding,
+    foundEndingReached: hasReachedFoundEnding,
     savedScreen: null,
     savedEndingId: null,
     endingId: null,
@@ -216,12 +219,15 @@ function continueStory() {
 function startOver() {
   clearHiddenTimer();
   clearSavedProgress();
+  const hasReachedMainEnding = state.mainEndingReached;
+  const hasReachedFoundEnding = state.foundEndingReached;
+
   state.screen = "story";
   state.entryIndex = 0;
   state.buttonPressCount = 0;
   state.storyStarted = true;
-  state.mainEndingReached = false;
-  state.foundEndingReached = false;
+  state.mainEndingReached = hasReachedMainEnding;
+  state.foundEndingReached = hasReachedFoundEnding;
   state.savedScreen = "story";
   state.savedEndingId = null;
   state.endingId = null;
@@ -302,10 +308,18 @@ function getActiveText() {
   }
 
   if (state.screen === "story") {
-    return flow[state.entryIndex].text;
+    return getEntryText(flow[state.entryIndex]);
   }
 
   return "";
+}
+
+function getEntryText(entry) {
+  if (state.mainEndingReached && entry.replayText) {
+    return entry.replayText;
+  }
+
+  return entry.text;
 }
 
 function clearTypeTimer() {
@@ -372,7 +386,7 @@ function render() {
 
   if (state.screen === "story") {
     renderStory();
-    startTypewriter(flow[state.entryIndex].text);
+    startTypewriter(getEntryText(flow[state.entryIndex]));
     paintTypewriterText();
     updateAdvanceState();
     return;
@@ -386,6 +400,7 @@ function render() {
 
 function renderTitle() {
   const hasProgress = hasSavedProgress();
+  const showReplayBegin = state.mainEndingReached && (!hasProgress || state.savedScreen === "ending");
   app.className = "app-shell title-mode";
   app.innerHTML = `
     <main class="title-screen">
@@ -394,14 +409,16 @@ function renderTitle() {
         <p class="kicker">BY xCoffeeTommyx</p>
         <h1 id="title-heading">THE BUTTON</h1>
         ${
-          hasProgress
+          showReplayBegin
+            ? `<button class="begin-button" type="button" data-action="start-over">Begin +</button>`
+            : hasProgress
             ? `<div class="title-actions">
                 <button class="begin-button" type="button" data-action="continue">Continue</button>
                 <button class="start-over-button" type="button" data-action="start-over">Start Over</button>
               </div>`
             : `<button class="begin-button" type="button" data-action="begin">Begin</button>`
         }
-        ${hasProgress ? `<p class="resume-note">${getProgressLabel()}</p>` : ""}
+        ${hasProgress && !showReplayBegin ? `<p class="resume-note">${getProgressLabel()}</p>` : ""}
       </section>
     </main>
     ${renderSettings()}
@@ -412,8 +429,6 @@ function renderTitle() {
 function hasSavedProgress() {
   return (
     state.storyStarted ||
-    state.mainEndingReached ||
-    state.foundEndingReached ||
     state.savedScreen === "ending" ||
     state.entryIndex > 0
   );
