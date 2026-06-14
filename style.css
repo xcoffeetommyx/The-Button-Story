@@ -334,6 +334,20 @@ h2 {
   white-space: pre-wrap;
 }
 
+.story-hint {
+  color: #fff4df;
+  text-shadow:
+    0 0 0.55rem rgba(169, 23, 34, 0.72),
+    0 0 1.4rem rgba(201, 157, 85, 0.24);
+  background:
+    linear-gradient(180deg, transparent 58%, rgba(169, 23, 34, 0.34) 58%),
+    linear-gradient(90deg, rgba(201, 157, 85, 0.08), rgba(169, 23, 34, 0.16));
+  border-radius: 0.16rem;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 0.08em;
+}
+
 .chapter-card .text-surface p {
   color: var(--paper-soft);
   font-size: 1rem;

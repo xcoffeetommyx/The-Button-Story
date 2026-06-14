@@ -5,6 +5,22 @@ const STORAGE_KEY = "the-button-story:progress:v1";
 const SETTINGS_KEY = "the-button-story:settings:v1";
 const TYPE_SPEED_MS = 18;
 const TRANSITION_MS = 180;
+const REPLAY_HIGHLIGHT_PHRASES = [
+  "something had already been pressed",
+  "the shape of a button clicking into place",
+  "Every step felt like a page turning",
+  "Every page left less of her behind",
+  "something red waited without being named",
+  "It shone like a choice",
+  "someone asking what happened next",
+  "since the first page",
+  "before the first page",
+  "The first press was not beside the lake",
+  "before June stepped between the trees",
+  "A button was not always red",
+  "only a way to begin",
+  "the thing that made everyone too late"
+];
 
 const app = document.querySelector("#app");
 const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -148,9 +164,6 @@ function saveSettings() {
 }
 
 function resetStory() {
-  const hasReachedMainEnding = state.mainEndingReached;
-  const hasReachedFoundEnding = state.foundEndingReached;
-
   clearSavedProgress();
 
   state = {
@@ -159,8 +172,8 @@ function resetStory() {
     entryIndex: 0,
     buttonPressCount: 0,
     storyStarted: false,
-    mainEndingReached: hasReachedMainEnding,
-    foundEndingReached: hasReachedFoundEnding,
+    mainEndingReached: false,
+    foundEndingReached: false,
     savedScreen: null,
     savedEndingId: null,
     endingId: null,
@@ -322,6 +335,11 @@ function getEntryText(entry) {
   return entry.text;
 }
 
+function shouldHighlightActiveText() {
+  const entry = flow[state.entryIndex];
+  return state.screen === "story" && state.mainEndingReached && Boolean(entry?.replayText);
+}
+
 function clearTypeTimer() {
   if (typeTimer) {
     window.clearInterval(typeTimer);
@@ -364,11 +382,28 @@ function startTypewriter(text) {
 
 function startHiddenTimer() {
   clearHiddenTimer();
+
+  if (!canTriggerFoundEndingFromTitle()) {
+    return;
+  }
+
   foundTimer = window.setTimeout(() => {
-    if (state.screen === "title") {
+    if (canTriggerFoundEndingFromTitle()) {
       showEnding("found");
     }
   }, FOUND_ENDING_WAIT_SECONDS * 1000);
+}
+
+function canTriggerFoundEndingFromTitle() {
+  return (
+    state.screen === "title" &&
+    !state.storyStarted &&
+    !state.mainEndingReached &&
+    !state.foundEndingReached &&
+    !state.savedScreen &&
+    !state.savedEndingId &&
+    state.entryIndex === 0
+  );
 }
 
 function render() {
@@ -594,7 +629,32 @@ function paintTypewriterText() {
     return;
   }
 
-  target.textContent = getActiveText().slice(0, state.visibleCount);
+  const visibleText = getActiveText().slice(0, state.visibleCount);
+  if (shouldHighlightActiveText()) {
+    target.innerHTML = renderHighlightedReplayText(visibleText);
+    return;
+  }
+
+  target.textContent = visibleText;
+}
+
+function renderHighlightedReplayText(text) {
+  let cursor = 0;
+  let html = "";
+
+  REPLAY_HIGHLIGHT_PHRASES.forEach((phrase) => {
+    const index = text.indexOf(phrase, cursor);
+    if (index === -1) {
+      return;
+    }
+
+    html += escapeHtml(text.slice(cursor, index));
+    html += `<span class="story-hint">${escapeHtml(phrase)}</span>`;
+    cursor = index + phrase.length;
+  });
+
+  html += escapeHtml(text.slice(cursor));
+  return html;
 }
 
 function updateAdvanceState() {
