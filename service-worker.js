@@ -1,4 +1,4 @@
-const CACHE_NAME = "the-button-story-v11";
+const CACHE_NAME = "the-button-story-v12";
 const APP_ASSETS = [
   "./",
   "./index.html",

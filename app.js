@@ -621,8 +621,13 @@ function renderStory() {
   const entry = flow[state.entryIndex];
   const progress = Math.round(((state.entryIndex + 1) / flow.length) * 100);
   const chapterName = STORY.chapters[entry.chapter];
-  const isTitleCard = entry.kind === "chapter" || entry.kind === "prelude";
   const title = entry.title;
+  const cardClass =
+    entry.kind === "prelude"
+      ? "chapter-card prelude-card"
+      : entry.kind === "chapter"
+        ? "chapter-card"
+        : "page-card";
   const eyebrow =
     entry.kind === "prelude"
       ? "Begin +"
@@ -640,7 +645,7 @@ function renderStory() {
           <span class="progress-count">${state.entryIndex + 1}/${flow.length}</span>
         </div>
       </header>
-      <article class="${isTitleCard ? "chapter-card" : "page-card"}" aria-labelledby="page-title">
+      <article class="${cardClass}" aria-labelledby="page-title">
         <p class="chapter-eyebrow">${eyebrow}</p>
         <h2 id="page-title">${escapeHtml(title)}</h2>
         <button class="text-surface" type="button" data-action="complete" aria-label="Complete current page">

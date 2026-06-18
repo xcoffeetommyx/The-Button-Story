@@ -325,6 +325,21 @@ h2 {
   text-align: center;
 }
 
+.prelude-card {
+  justify-content: flex-start;
+  min-height: 0;
+  padding: 1.5rem 1.25rem 1rem;
+}
+
+.prelude-card .text-surface {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: var(--content-scroll-clearance);
+  scroll-padding-bottom: var(--content-scroll-clearance);
+}
+
 .text-surface p {
   margin: 0;
   color: var(--paper);
