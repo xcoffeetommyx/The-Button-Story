@@ -40,6 +40,7 @@ const ACHIEVEMENT_DEFINITIONS = [
 ];
 
 const app = document.querySelector("#app");
+const notifications = document.querySelector("#notifications");
 const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const firstFlow = buildFlow(STORY, "first");
@@ -60,15 +61,24 @@ let state = {
   isTypingComplete: false,
   isTransitioning: false,
   settingsOpen: false,
+  eraseConfirmOpen: false,
   settings: loadSettings(),
   achievements: loadAchievements()
 };
 
 let typeTimer = null;
 let foundTimer = null;
+let achievementToastTimer = null;
 
 hydrateProgress();
 render();
+
+notifications.addEventListener("click", () => {
+  clearAchievementToast();
+  state.settingsOpen = true;
+  state.eraseConfirmOpen = false;
+  render();
+});
 
 window.addEventListener("beforeunload", saveProgress);
 
@@ -254,13 +264,17 @@ function saveAchievements() {
 }
 
 function unlockAchievement(id) {
-  if (!state.achievements[id]) {
-    state.achievements[id] = true;
-    saveAchievements();
+  if (state.achievements[id]) {
+    return false;
   }
+
+  state.achievements[id] = true;
+  saveAchievements();
+  return true;
 }
 
 function resetStory() {
+  clearAchievementToast();
   clearSavedProgress();
 
   state = {
@@ -278,7 +292,48 @@ function resetStory() {
     visibleCount: 0,
     isTypingComplete: false,
     isTransitioning: false,
-    settingsOpen: false
+    settingsOpen: false,
+    eraseConfirmOpen: false
+  };
+  render();
+}
+
+function eraseAllData() {
+  clearTypeTimer();
+  clearHiddenTimer();
+  clearAchievementToast();
+
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(SETTINGS_KEY);
+    localStorage.removeItem(ACHIEVEMENTS_KEY);
+  } catch {
+    // Reset the current session even when persistent storage is unavailable.
+  }
+
+  state = {
+    ...state,
+    screen: "title",
+    runMode: "first",
+    entryIndex: 0,
+    buttonPressCount: 0,
+    storyStarted: false,
+    mainEndingReached: false,
+    foundEndingReached: false,
+    savedScreen: null,
+    savedEndingId: null,
+    endingId: null,
+    visibleCount: 0,
+    isTypingComplete: false,
+    isTransitioning: false,
+    settingsOpen: false,
+    eraseConfirmOpen: false,
+    settings: { reduceMotion: reduceMotionQuery.matches },
+    achievements: {
+      whatRemained: false,
+      truth: false,
+      theButton: false
+    }
   };
   render();
 }
@@ -384,17 +439,17 @@ function showEnding(endingId) {
   state.mainEndingReached = state.mainEndingReached || endingId === "main";
   state.foundEndingReached = state.foundEndingReached || endingId === "found";
 
-  if (endingId === "main") {
-    unlockAchievement("whatRemained");
-  } else if (endingId === "truth") {
-    unlockAchievement("truth");
-  } else if (endingId === "found") {
-    unlockAchievement("theButton");
-  }
+  const achievementId =
+    endingId === "main" ? "whatRemained" : endingId === "truth" ? "truth" : "theButton";
+  const achievementUnlocked = unlockAchievement(achievementId);
   state.visibleCount = 0;
   state.isTypingComplete = false;
   saveProgress();
   render();
+
+  if (achievementUnlocked) {
+    showAchievementToast(achievementId);
+  }
 }
 
 function completeCurrentText() {
@@ -487,6 +542,36 @@ function clearHiddenTimer() {
     window.clearTimeout(foundTimer);
     foundTimer = null;
   }
+}
+
+function clearAchievementToast() {
+  if (achievementToastTimer) {
+    window.clearTimeout(achievementToastTimer);
+    achievementToastTimer = null;
+  }
+
+  notifications.innerHTML = "";
+}
+
+function showAchievementToast(id) {
+  const achievement = ACHIEVEMENT_DEFINITIONS.find((item) => item.id === id);
+  if (!achievement) {
+    return;
+  }
+
+  clearAchievementToast();
+  notifications.innerHTML = `
+    <button class="achievement-toast" type="button" aria-label="Achievement unlocked: ${escapeHtml(achievement.title)}. Open Settings.">
+      <span class="achievement-toast-mark" aria-hidden="true"></span>
+      <span class="achievement-toast-copy">
+        <small>Achievement unlocked</small>
+        <strong>${escapeHtml(achievement.title)}</strong>
+        <span>View in Settings</span>
+      </span>
+    </button>
+  `;
+
+  achievementToastTimer = window.setTimeout(clearAchievementToast, 4400);
 }
 
 function startTypewriter(text) {
@@ -701,6 +786,18 @@ function renderSettings() {
         ${renderAchievements()}
         <p class="content-note">Content note: childhood loneliness and emotional distress.</p>
         <button class="reset-button" type="button" data-action="reset">Reset Story</button>
+        ${
+          state.eraseConfirmOpen
+            ? `<section class="erase-confirm" aria-labelledby="erase-title">
+                <h3 id="erase-title">Erase all data?</h3>
+                <p>This removes saved progress, settings, and every achievement.</p>
+                <div class="erase-actions">
+                  <button class="cancel-erase-button" type="button" data-action="cancel-erase">Cancel</button>
+                  <button class="confirm-erase-button" type="button" data-action="confirm-erase">Erase Everything</button>
+                </div>
+              </section>`
+            : `<button class="erase-all-button" type="button" data-action="erase-all">Erase All Data</button>`
+        }
       </section>
     </div>
   `;
@@ -747,12 +844,14 @@ function handleAction(event) {
 
   if (action === "settings") {
     state.settingsOpen = true;
+    state.eraseConfirmOpen = false;
     render();
     return;
   }
 
   if (action === "close-settings") {
     state.settingsOpen = false;
+    state.eraseConfirmOpen = false;
     render();
     return;
   }
@@ -766,6 +865,23 @@ function handleAction(event) {
 
   if (action === "reset") {
     resetStory();
+    return;
+  }
+
+  if (action === "erase-all") {
+    state.eraseConfirmOpen = true;
+    render();
+    return;
+  }
+
+  if (action === "cancel-erase") {
+    state.eraseConfirmOpen = false;
+    render();
+    return;
+  }
+
+  if (action === "confirm-erase") {
+    eraseAllData();
     return;
   }
 
