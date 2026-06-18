@@ -3,9 +3,15 @@ const FOUND_ENDING_WAIT_SECONDS = 60;
 const STORY = window.BUTTON_STORY;
 const STORAGE_KEY = "the-button-story:progress:v1";
 const SETTINGS_KEY = "the-button-story:settings:v1";
+const ACHIEVEMENTS_KEY = "the-button-story:achievements:v1";
 const TYPE_SPEED_MS = 18;
 const TRANSITION_MS = 180;
 const REPLAY_HIGHLIGHT_PHRASES = [
+  "The moth waited",
+  "Being safe was not the same as being seen",
+  "Need less",
+  "It was easy to miss quiet things",
+  "When June stopped and waited, its wings opened",
   "something had already been pressed",
   "the shape of a button clicking into place",
   "Every step felt like a page turning",
@@ -19,15 +25,29 @@ const REPLAY_HIGHLIGHT_PHRASES = [
   "before June stepped between the trees",
   "A button was not always red",
   "only a way to begin",
-  "the thing that made everyone too late"
+  "the thing that made everyone too late",
+  "a small decision was made somewhere outside the yard",
+  "something red waited to be touched",
+  "There had always been another path",
+  "only while nothing was asked of it",
+  "The moth did not touch the red place",
+  "For the first time, the story waited with it"
+];
+const ACHIEVEMENT_DEFINITIONS = [
+  { id: "whatRemained", title: "What Remained", description: "Reached the first ending." },
+  { id: "truth", title: "The Truth", description: "Found what came before." },
+  { id: "theButton", title: "The Button", description: "Found the path that required nothing." }
 ];
 
 const app = document.querySelector("#app");
 const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-const flow = buildFlow(STORY);
+const firstFlow = buildFlow(STORY, "first");
+const plusFlow = buildFlow(STORY, "plus");
+const legacyFlow = plusFlow.filter((entry) => entry.kind !== "prelude");
 let state = {
   screen: "title",
+  runMode: "first",
   entryIndex: 0,
   buttonPressCount: 0,
   storyStarted: false,
@@ -40,7 +60,8 @@ let state = {
   isTypingComplete: false,
   isTransitioning: false,
   settingsOpen: false,
-  settings: loadSettings()
+  settings: loadSettings(),
+  achievements: loadAchievements()
 };
 
 let typeTimer = null;
@@ -57,11 +78,20 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-function buildFlow(source) {
+function buildFlow(source, runMode) {
   const entries = [];
   let currentChapter = null;
 
   source.pages.forEach((page) => {
+    if (page.plusOnly && runMode !== "plus") {
+      return;
+    }
+
+    if (page.kind === "prelude") {
+      entries.push({ ...page, kind: "prelude" });
+      return;
+    }
+
     if (page.chapter !== currentChapter) {
       currentChapter = page.chapter;
       entries.push({
@@ -82,6 +112,10 @@ function buildFlow(source) {
   return entries;
 }
 
+function getFlow() {
+  return state.runMode === "plus" ? plusFlow : firstFlow;
+}
+
 function hydrateProgress() {
   const progress = readJson(STORAGE_KEY);
 
@@ -89,7 +123,16 @@ function hydrateProgress() {
     return;
   }
 
-  const entryIndex = Number(progress.entryIndex);
+  const legacyMainReached = progress.mainEndingReached === true;
+  const legacyStoryInProgress = progress.screen === "story" && progress.storyStarted === true;
+  state.runMode =
+    progress.runMode === "plus" || (!progress.runMode && legacyMainReached && legacyStoryInProgress)
+      ? "plus"
+      : "first";
+
+  const flow = getFlow();
+
+  const entryIndex = resolveSavedEntryIndex(progress, flow);
   if (Number.isInteger(entryIndex) && entryIndex >= 0 && entryIndex < flow.length) {
     state.entryIndex = entryIndex;
   }
@@ -109,11 +152,43 @@ function hydrateProgress() {
     typeof progress.foundEndingReached === "boolean" ? progress.foundEndingReached : false;
   state.savedScreen = progress.screen === "ending" ? "ending" : state.storyStarted ? "story" : null;
   state.savedEndingId =
-    progress.endingId === "main" || progress.endingId === "found" ? progress.endingId : null;
+    progress.endingId === "main" || progress.endingId === "found" || progress.endingId === "truth"
+      ? progress.endingId
+      : null;
 
   if (state.savedScreen === "ending" && !state.savedEndingId) {
     state.savedEndingId = state.mainEndingReached ? "main" : state.foundEndingReached ? "found" : null;
   }
+
+  if (state.mainEndingReached && !state.achievements.whatRemained) {
+    state.achievements.whatRemained = true;
+  }
+
+  if (state.foundEndingReached && !state.achievements.theButton) {
+    state.achievements.theButton = true;
+  }
+
+  saveAchievements();
+}
+
+function resolveSavedEntryIndex(progress, flow) {
+  const storedIndex = Number(progress.entryIndex);
+  if (!Number.isInteger(storedIndex) || storedIndex < 0) {
+    return 0;
+  }
+
+  if (progress.runMode === "first" || progress.runMode === "plus") {
+    return Math.min(storedIndex, flow.length - 1);
+  }
+
+  for (let index = storedIndex; index < legacyFlow.length; index += 1) {
+    const migratedIndex = flow.findIndex((entry) => entry.id === legacyFlow[index].id);
+    if (migratedIndex >= 0) {
+      return migratedIndex;
+    }
+  }
+
+  return flow.length - 1;
 }
 
 function loadSettings() {
@@ -127,6 +202,16 @@ function loadSettings() {
   return {
     reduceMotion:
       typeof stored.reduceMotion === "boolean" ? stored.reduceMotion : prefersReducedMotion
+  };
+}
+
+function loadAchievements() {
+  const stored = readJson(ACHIEVEMENTS_KEY);
+
+  return {
+    whatRemained: stored?.whatRemained === true,
+    truth: stored?.truth === true,
+    theButton: stored?.theButton === true
   };
 }
 
@@ -149,6 +234,7 @@ function writeJson(key, value) {
 
 function saveProgress() {
   writeJson(STORAGE_KEY, {
+    runMode: state.runMode,
     entryIndex: state.entryIndex,
     buttonPressCount: state.buttonPressCount,
     storyStarted: state.storyStarted,
@@ -163,12 +249,24 @@ function saveSettings() {
   writeJson(SETTINGS_KEY, state.settings);
 }
 
+function saveAchievements() {
+  writeJson(ACHIEVEMENTS_KEY, state.achievements);
+}
+
+function unlockAchievement(id) {
+  if (!state.achievements[id]) {
+    state.achievements[id] = true;
+    saveAchievements();
+  }
+}
+
 function resetStory() {
   clearSavedProgress();
 
   state = {
     ...state,
     screen: "title",
+    runMode: "first",
     entryIndex: 0,
     buttonPressCount: 0,
     storyStarted: false,
@@ -195,6 +293,8 @@ function clearSavedProgress() {
 
 function beginStory() {
   clearHiddenTimer();
+  state.runMode = "first";
+  state.entryIndex = 0;
   state.screen = "story";
   state.storyStarted = true;
   state.savedScreen = "story";
@@ -222,7 +322,8 @@ function continueStory() {
     state.endingId = null;
   }
 
-  state.storyStarted = state.storyStarted || state.screen === "story" || state.endingId === "main";
+  state.storyStarted =
+    state.storyStarted || state.screen === "story" || state.endingId === "main" || state.endingId === "truth";
   state.visibleCount = 0;
   state.isTypingComplete = false;
   saveProgress();
@@ -252,15 +353,44 @@ function startOver() {
   render();
 }
 
+function beginPlusStory() {
+  clearHiddenTimer();
+  clearSavedProgress();
+  state.screen = "story";
+  state.runMode = "plus";
+  state.entryIndex = 0;
+  state.buttonPressCount = 0;
+  state.storyStarted = true;
+  state.mainEndingReached = true;
+  state.foundEndingReached = false;
+  state.savedScreen = "story";
+  state.savedEndingId = null;
+  state.endingId = null;
+  state.visibleCount = 0;
+  state.isTypingComplete = false;
+  state.isTransitioning = false;
+  state.settingsOpen = false;
+  saveProgress();
+  render();
+}
+
 function showEnding(endingId) {
   clearHiddenTimer();
   state.screen = "ending";
   state.endingId = endingId;
   state.savedScreen = "ending";
   state.savedEndingId = endingId;
-  state.storyStarted = state.storyStarted || endingId === "main";
+  state.storyStarted = state.storyStarted || endingId === "main" || endingId === "truth";
   state.mainEndingReached = state.mainEndingReached || endingId === "main";
   state.foundEndingReached = state.foundEndingReached || endingId === "found";
+
+  if (endingId === "main") {
+    unlockAchievement("whatRemained");
+  } else if (endingId === "truth") {
+    unlockAchievement("truth");
+  } else if (endingId === "found") {
+    unlockAchievement("theButton");
+  }
   state.visibleCount = 0;
   state.isTypingComplete = false;
   saveProgress();
@@ -281,9 +411,10 @@ function nextPage() {
   }
 
   state.buttonPressCount += 1;
+  const flow = getFlow();
 
   if (state.entryIndex >= flow.length - 1) {
-    showEnding("main");
+    showEnding(state.runMode === "plus" ? "truth" : "main");
     return;
   }
 
@@ -308,6 +439,11 @@ function returnToTitle() {
     return;
   }
 
+  if (state.endingId === "truth") {
+    resetStory();
+    return;
+  }
+
   state.screen = "title";
   state.visibleCount = 0;
   state.isTypingComplete = false;
@@ -321,14 +457,14 @@ function getActiveText() {
   }
 
   if (state.screen === "story") {
-    return getEntryText(flow[state.entryIndex]);
+    return getEntryText(getFlow()[state.entryIndex]);
   }
 
   return "";
 }
 
 function getEntryText(entry) {
-  if (state.mainEndingReached && entry.replayText) {
+  if (state.runMode === "plus" && entry.replayText) {
     return entry.replayText;
   }
 
@@ -336,8 +472,7 @@ function getEntryText(entry) {
 }
 
 function shouldHighlightActiveText() {
-  const entry = flow[state.entryIndex];
-  return state.screen === "story" && state.mainEndingReached && Boolean(entry?.replayText);
+  return state.runMode === "plus" && (state.screen === "story" || state.endingId === "truth");
 }
 
 function clearTypeTimer() {
@@ -420,6 +555,7 @@ function render() {
   }
 
   if (state.screen === "story") {
+    const flow = getFlow();
     renderStory();
     startTypewriter(getEntryText(flow[state.entryIndex]));
     paintTypewriterText();
@@ -435,7 +571,8 @@ function render() {
 
 function renderTitle() {
   const hasProgress = hasSavedProgress();
-  const showReplayBegin = state.mainEndingReached && (!hasProgress || state.savedScreen === "ending");
+  const showReplayBegin =
+    state.achievements.whatRemained && state.savedScreen === "ending" && state.savedEndingId === "main";
   app.className = "app-shell title-mode";
   app.innerHTML = `
     <main class="title-screen">
@@ -445,7 +582,7 @@ function renderTitle() {
         <h1 id="title-heading">THE BUTTON</h1>
         ${
           showReplayBegin
-            ? `<button class="begin-button" type="button" data-action="start-over">Begin +</button>`
+            ? `<button class="begin-button" type="button" data-action="begin-plus">Begin +</button>`
             : hasProgress
             ? `<div class="title-actions">
                 <button class="begin-button" type="button" data-action="continue">Continue</button>
@@ -475,16 +612,23 @@ function getProgressLabel() {
     return STORY.endings[endingId]?.title || "Ending reached";
   }
 
-  return `Chapter ${flow[state.entryIndex].chapter || 1}`;
+  const entry = getFlow()[state.entryIndex];
+  return entry?.kind === "prelude" ? "Before" : `Chapter ${entry?.chapter || 1}`;
 }
 
 function renderStory() {
+  const flow = getFlow();
   const entry = flow[state.entryIndex];
   const progress = Math.round(((state.entryIndex + 1) / flow.length) * 100);
   const chapterName = STORY.chapters[entry.chapter];
-  const isChapter = entry.kind === "chapter";
-  const title = isChapter ? entry.title : entry.title;
-  const eyebrow = isChapter ? `Chapter ${entry.chapter}` : `Chapter ${entry.chapter} / ${chapterName}`;
+  const isTitleCard = entry.kind === "chapter" || entry.kind === "prelude";
+  const title = entry.title;
+  const eyebrow =
+    entry.kind === "prelude"
+      ? "Begin +"
+      : entry.kind === "chapter"
+        ? `Chapter ${entry.chapter}`
+        : `Chapter ${entry.chapter} / ${chapterName}`;
 
   app.className = `app-shell reader-mode ${state.isTransitioning ? "turning" : ""}`;
   app.innerHTML = `
@@ -496,7 +640,7 @@ function renderStory() {
           <span class="progress-count">${state.entryIndex + 1}/${flow.length}</span>
         </div>
       </header>
-      <article class="${isChapter ? "chapter-card" : "page-card"}" aria-labelledby="page-title">
+      <article class="${isTitleCard ? "chapter-card" : "page-card"}" aria-labelledby="page-title">
         <p class="chapter-eyebrow">${eyebrow}</p>
         <h2 id="page-title">${escapeHtml(title)}</h2>
         <button class="text-surface" type="button" data-action="complete" aria-label="Complete current page">
@@ -549,10 +693,41 @@ function renderSettings() {
           <span>Reduced motion</span>
           <input type="checkbox" data-action="toggle-motion" ${state.settings.reduceMotion ? "checked" : ""} />
         </label>
+        ${renderAchievements()}
         <p class="content-note">Content note: childhood loneliness and emotional distress.</p>
         <button class="reset-button" type="button" data-action="reset">Reset Story</button>
       </section>
     </div>
+  `;
+}
+
+function renderAchievements() {
+  const unlockedCount = ACHIEVEMENT_DEFINITIONS.filter(
+    (achievement) => state.achievements[achievement.id]
+  ).length;
+
+  return `
+    <section class="achievements" aria-labelledby="achievements-title">
+      <header class="achievements-header">
+        <h3 id="achievements-title">Achievements</h3>
+        <span>${unlockedCount}/${ACHIEVEMENT_DEFINITIONS.length}</span>
+      </header>
+      <ol class="achievement-list">
+        ${ACHIEVEMENT_DEFINITIONS.map((achievement, index) => {
+          const unlocked = state.achievements[achievement.id];
+          return `
+            <li class="achievement ${unlocked ? "unlocked" : "locked"}">
+              <span class="achievement-mark" aria-hidden="true"></span>
+              <span class="achievement-copy">
+                <strong>${unlocked ? escapeHtml(achievement.title) : "???"}</strong>
+                ${unlocked ? `<small>${escapeHtml(achievement.description)}</small>` : ""}
+              </span>
+              <span class="achievement-number">0${index + 1}</span>
+            </li>
+          `;
+        }).join("")}
+      </ol>
+    </section>
   `;
 }
 
@@ -595,6 +770,11 @@ function handleAction(event) {
 
   if (action === "begin") {
     beginStory();
+    return;
+  }
+
+  if (action === "begin-plus") {
+    beginPlusStory();
     return;
   }
 

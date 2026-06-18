@@ -7,8 +7,32 @@ window.BUTTON_STORY = {
   },
   pages: [
     {
+      id: "plus_before",
+      kind: "prelude",
+      plusOnly: true,
+      title: "Before",
+      text: `The White Moth had learned the shape of this path.
+
+It did not fly toward the woods.
+
+This time, it turned back.
+
+Past the lake. Past Almost. Past the trees and the yard. Past the moment the story had agreed to begin.
+
+It settled on the kitchen window, on the other side of June's evening.
+
+Its wings remained closed.
+
+There were things the first telling had not been allowed to see.
+
+The moth waited.
+
+Then, slowly, it opened them.`
+    },
+    {
       id: "ch01_01",
       chapter: 1,
+      plusOnly: true,
       title: "Fed and watered",
       text: `June was twelve years old, and nobody in the house would have called her neglected.
 
@@ -24,11 +48,20 @@ She was watered.
 
 She was alive.
 
-Most days, that seemed to be the part her parents remembered.`
+Most days, that seemed to be the part her parents remembered.
+
+The White Moth moved along the kitchen window, touching each fact as though it were counting.
+
+Food. Clothes. Appointments. A locked door at night.
+
+Everything required to keep a child safe.
+
+Being safe was not the same as being seen.`
     },
     {
       id: "ch01_02",
       chapter: 1,
+      plusOnly: true,
       title: "The list of things",
       text: `Her mother was good at lists.
 
@@ -42,7 +75,13 @@ June was a thing they kept safe between other things.
 
 She knew they loved her.
 
-She also knew love could pass over you without stopping.`
+She also knew love could pass over you without stopping.
+
+The moth rested beside the final check mark.
+
+There was no line for the story June had tried to tell at breakfast.
+
+There was no box for whether anyone had looked at her while she told it.`
     },
     {
       id: "ch01_03",
@@ -89,6 +128,7 @@ This kept becoming something else.`
     {
       id: "ch01_05",
       chapter: 1,
+      plusOnly: true,
       title: "Not bad",
       text: `June was not a bad child.
 
@@ -100,7 +140,13 @@ So she needed less.
 
 She made her own games. She answered her own questions. She swallowed stories when nobody had time to hear the end of them.
 
-By twelve, she had become very talented at being fine.`
+By twelve, she had become very talented at being fine.
+
+The White Moth crossed the window without making a sound.
+
+It was easy to miss quiet things.
+
+That did not mean they had chosen to disappear.`
     },
     {
       id: "ch01_06",
@@ -148,6 +194,7 @@ June lowered her hand before anyone had to decide whether they had seen it.`
     {
       id: "ch01_07",
       chapter: 1,
+      plusOnly: true,
       title: "The quiet test",
       text: `June stood very still.
 
@@ -167,7 +214,15 @@ With dishes.
 
 With emails.
 
-With another episode starting before the last one had finished leaving the room.`
+With another episode starting before the last one had finished leaving the room.
+
+A white moth touched the outside of the screen door.
+
+When June moved closer, its wings closed.
+
+When June stopped and waited, its wings opened.
+
+She did not know it was teaching her anything.`
     },
     {
       id: "ch01_08",
@@ -1035,6 +1090,45 @@ But Almost was a place.
 Almost was a promise.
 
 Almost was what remained.`
+    },
+    truth: {
+      id: "truth",
+      title: "Before the First Step",
+      text: `The White Moth did not lead June beyond the lake.
+
+It turned.
+
+The woods folded backward around its pale wings.
+
+Almost returned its lights. The path returned each footprint it had refused to keep. Morning became night. Searchers became parents who had not yet understood they were searching.
+
+At last, the moth reached the kitchen window.
+
+June stood in the yard with one hand raised.
+
+Her mother was almost looking.
+
+For one breath, nothing interrupted them.
+
+Then a small decision was made somewhere outside the yard.
+
+The oven timer cried out.
+
+The moment closed.
+
+The moth settled on the place where the story had begun. Beneath its wings, something red waited to be touched.
+
+There had always been another path.
+
+Not a path taken by moving forward.
+
+A path that remained only while nothing was asked of it.
+
+The moth did not touch the red place.
+
+It waited.
+
+For the first time, the story waited with it.`
     }
   }
 };
